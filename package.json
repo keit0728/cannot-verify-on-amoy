@@ -1,0 +1,35 @@
+{
+  "name": "hardhat-project",
+  "scripts": {
+    "node": "hardhat node",
+    "clean": "hardhat clean",
+    "compile": "hardhat compile",
+    "size": "hardhat size-contracts",
+    "test": "REPORT_GAS=true hardhat test test/test$npm_config_name.js",
+    "script": "NETWORK=$npm_config_network NAME=$npm_config_name hardhat run scripts/$npm_config_file.js --network $npm_config_network",
+    "predeploy": "npm run test --name=$npm_config_name",
+    "deploy": "NETWORK=$npm_config_network NAME=$npm_config_name hardhat run scripts/deploy.js --network $npm_config_network",
+    "deploy:all": "npm run deploy --network=$npm_config_network --name=CreateDAO && npm run deploy --network=$npm_config_network --name=Distributor && npm run deploy --network=$npm_config_network --name=ItemMarket && npm run deploy --network=$npm_config_network --name=Multicall && npm run deploy --network=$npm_config_network --name=Output && npm run deploy --network=$npm_config_network --name=Proposal && npm run deploy --network=$npm_config_network --name=Task && npm run deploy --network=$npm_config_network --name=Unyte1155 && npm run deploy --network=$npm_config_network --name=Vote",
+    "prepost-deploy": "npm run test --name=$npm_config_name",
+    "post-deploy": "NETWORK=$npm_config_network NAME=$npm_config_name hardhat run scripts/postDeploy$npm_config_name.js --network $npm_config_network",
+    "post-deploy:all": "npm run post-deploy --network=$npm_config_network --name=CreateDAO && npm run post-deploy --network=$npm_config_network --name=Distributor && npm run post-deploy --network=$npm_config_network --name=ItemMarket && npm run post-deploy --network=$npm_config_network --name=Output && npm run post-deploy --network=$npm_config_network --name=Proposal && npm run post-deploy --network=$npm_config_network --name=Task && npm run post-deploy --network=$npm_config_network --name=Unyte1155 && npm run post-deploy --network=$npm_config_network --name=Vote",
+    "preupgrade": "npm run test --name=$npm_config_name",
+    "upgrade": "NETWORK=$npm_config_network NAME=$npm_config_name hardhat run scripts/upgrade.js --network $npm_config_network",
+    "verify": "hardhat verify $npm_config_contract --network $npm_config_network --constructor-args scripts/args/arg$npm_config_name.js",
+    "wallet": "NETWORK=$npm_config_network hardhat run scripts/getWalletGenerator.js"
+  },
+  "devDependencies": {
+    "@enjinstarter/hardhat-oklink-verify": "^0.2.0",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.2"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.3",
+    "@openzeppelin/contracts-upgradeable": "^4.9.3",
+    "@openzeppelin/hardhat-upgrades": "^3.0.5",
+    "axios": "^1.6.8",
+    "chai": "^4.4.1",
+    "dotenv": "^16.4.5",
+    "hardhat-contract-sizer": "^2.10.0"
+  }
+}
