@@ -15,7 +15,7 @@ module.exports = {
   },
   networks: {
     polygonAmoy: {
-      url: process.env.MUMBAI_KEY,
+      url: process.env.ALCHEMY_URL,
       accounts: [process.env.PRIVATE_KEY],
     },
   },
